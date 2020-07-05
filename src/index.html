@@ -1,0 +1,179 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div class="arching cont">
+      <div class="numbers cont2">
+        <div class="title">Numbers</div>
+        <div class="container">
+          <div class="box num tgt">634</div>
+          <div id="num1">
+            <button class="box big">Big</button>
+            <div class="box num n1">0</div>
+            <button class="box small">Small</button>
+          </div>
+          <div id="num2">
+            <button class="box big">Big</button>
+            <div class="box num n2">1</div>
+            <button class="box small">Small</button>
+          </div>
+          <div id="num3">
+            <button class="box big">Big</button>
+            <div class="box num n3">2</div>
+            <button class="box small">Small</button>
+          </div>
+          <div id="num4">
+            <button class="box big">Big</button>
+            <div class="box num n4">3</div>
+            <button class="box small">Small</button>
+          </div>
+          <div id="num5">
+            <button class="box big">Big</button>
+            <div class="box num n5">4</div>
+            <button class="box small">Small</button>
+          </div>
+          <div id="num6">
+            <button class="box big">Big</button>
+            <div class="box num n6">5</div>
+            <button class="box small">Small</button>
+          </div>
+          <button class="clear">
+            x
+          </button>
+        </div>
+      </div>
+      <div class="letters cont3">
+        <div class="title">Letters</div>
+        <div class="container2">
+          <div id="let1">
+            <button class="box vowel">Vowel</button>
+            <div class="box let l1">A</div>
+            <button class="box consonant">Consonant</button>
+          </div>
+          <div id="let2">
+            <button class="box vowel">Vowel</button>
+            <div class="box let l2">A</div>
+            <button class="box consonant">Consonant</button>
+          </div>
+          <div id="let3">
+            <button class="box vowel">Vowel</button>
+            <div class="box let l3">A</div>
+            <button class="box consonant">Consonant</button>
+          </div>
+          <div id="let4">
+            <button class="box vowel">Vowel</button>
+            <div class="box let l4">A</div>
+            <button class="box consonant">Consonant</button>
+          </div>
+          <div id="let5">
+            <button class="box vowel">Vowel</button>
+            <div class="box let l5">A</div>
+            <button class="box consonant">Consonant</button>
+          </div>
+          <div id="let6">
+            <button class="box vowel">Vowel</button>
+            <div class="box let l6">A</div>
+            <button class="box consonant">Consonant</button>
+          </div>
+          <div id="let7">
+            <button class="box vowel">Vowel</button>
+            <div class="box let l7">A</div>
+            <button class="box consonant">Consonant</button>
+          </div>
+          <div id="let8">
+            <button class="box vowel">Vowel</button>
+            <div class="box let l8">A</div>
+            <button class="box consonant">Consonant</button>
+          </div>
+          <div id="let9">
+            <button class="box vowel">Vowel</button>
+            <div class="box let l9">A</div>
+            <button class="box consonant">Consonant</button>
+          </div>
+          <button class="clear">
+            x
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+
+  <script>
+    console.clear();
+
+
+    let ns = document.querySelectorAll('.num');
+    let ls = document.querySelectorAll('.let');
+    let nums = document.querySelector('.container');
+    let lets = document.querySelector('.container2');
+
+      nums.addEventListener('click', (event) => {
+        n = event.target.parentNode.children[1]
+        clicked = event.target.classList;
+        if (clicked[1] === "big") {
+          n.innerHTML = randBig();
+        } else if (clicked[1] === "small") {
+          n.innerHTML = randSmall();
+        } else if (clicked[2] === "tgt") {
+          event.target.innerHTML = randTarget();
+        } else if (clicked[0] === "clear") {
+          clearNums();
+        }
+      });
+    function randBig() {
+      return Math.ceil(Math.random()*4) * 25;
+    }
+    function randSmall() {
+      return Math.ceil(Math.random()*10);
+    }
+    function randTarget() {
+      return Math.ceil(Math.random()*900)+100
+    }
+
+    function clearNums() {
+        Array.from(ns).forEach(el => el.innerHTML = "-")
+    }
+
+
+    lets.addEventListener('click', (event) => {
+      l = event.target.parentNode.children[1];
+      clicked = event.target.classList;
+      if (clicked[1] === "vowel") {
+        l.innerHTML = randVowel();
+      } else if (clicked[1] === "consonant") {
+        l.innerHTML = randConsonant();
+      } else if (clicked[0] === "clear") {
+        clearLets();
+      } else if (clicked[1] === "let") {
+        document.onkeypress = function(event) {
+          l.innerHTML = String.fromCharCode(event.charCode).toUpperCase();
+          document.onkeypress = null;
+        }
+      }
+    })
+
+    function randVowel() {
+      let vowels = ["a","e","i","o","u"];
+      return vowels[Math.floor(Math.random()*5)].toUpperCase();
+    }
+
+    function randConsonant() {
+      let cons = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"];
+      let ch = cons[Math.floor(Math.random()* (cons.length))];
+      return ch.toUpperCase();
+    }
+
+
+    function clearLets() {
+      Array.from(ls).forEach(el => el.innerHTML = "-");
+    }
+
+    clearNums();
+    clearLets();
+  </script>
+</html>
